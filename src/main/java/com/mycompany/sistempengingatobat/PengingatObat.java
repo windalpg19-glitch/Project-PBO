@@ -1,41 +1,68 @@
-
-
 package com.mycompany.sistempengingatobat;
 
-/**
- *
- * @author WINDA
- */
 public class PengingatObat {
 
-    // Atribut
-    String namaObat;
-    String dosis;
-    int jam;
+    
+private String namaObat;
+private String dosis;
+private int jamMinum;
 
-    // Constructor
-    public PengingatObat(String namaObat, String dosis, int jam) {
-        this.namaObat = namaObat;
-        this.dosis = dosis;
-        this.jam = jam;
+    
+    public PengingatObat(String namaObat, String dosis, int jamMinum) {
+        setNamaObat(namaObat);
+        setDosis(dosis);
+        setJamMinum(jamMinum);
     }
 
-    // Method untuk menampilkan data
-    public void tampilkanData() {
+    
+
+    public String getNamaObat() {
+        return namaObat;
+    }
+
+    public void setNamaObat(String namaObat) {
         
-        System.out.println("Nama Obat : " + namaObat);
-        System.out.println("Dosis     : " + dosis + " mg");
-        System.out.println("Jam Minum : " + jam + ":00");
+        if (namaObat != null && !namaObat.trim().isEmpty()) {
+        this.namaObat = namaObat;
+        } else {
+        System.out.println("[Error] Nama obat tidak boleh kosong!");
+            this.namaObat = "Tanpa Nama";
+        }
     }
 
-    public static void main(String[] args) {
+    public String getDosis() {
+        return dosis;
+    }
 
-        PengingatObat obat1 = new PengingatObat(
-                "Paracetamol",
-                "500",
-                8
-        );
+    public void setDosis(String dosis) {
+        
+        if (dosis != null && !dosis.trim().isEmpty()) {
+        this.dosis = dosis;
+        } else {
+        System.out.println("[Error] Dosis tidak boleh kosong!");
+        this.dosis = "0";
+        }
+    }
 
-        obat1.tampilkanData();
+    public int getJamMinum() {
+    return jamMinum;
+    }
+
+    public void setJamMinum(int jamMinum) {
+        
+        if (jamMinum >= 0 && jamMinum <= 23) {
+         this.jamMinum = jamMinum;
+        } else {
+        System.out.println("[Error] Jam minum harus antara format 0 - 23!");
+        this.jamMinum = 0;
+        }
+    }
+
+    
+
+    public void tampilkanData() {
+   System.out.println("Nama Obat : " + namaObat);
+   System.out.println("Dosis     : " + dosis + " mg");
+    System.out.printf("Jam Minum : %02d:00 WIB\n", jamMinum);
     }
 }

@@ -2,34 +2,27 @@ package com.mycompany.sistempengingatobat;
 
 public class SistemPengingatObat {
 
-    String namaObat;
-    String dosis;
-    int jamMinum;
-
-    // Constructor
-    public SistemPengingatObat(String namaObat, String dosis, int jamMinum) {
-        this.namaObat = namaObat;
-        this.dosis = dosis;
-        this.jamMinum = jamMinum;
-    }
-
-    // Menampilkan data obat
-    public void tampilkanData() {
-        
-        System.out.println("Nama Obat : " + namaObat);
-        System.out.println("Dosis     : " + dosis + " mg");
-        System.out.println("Jam Minum : " + jamMinum + ":00");
-    }
-
     public static void main(String[] args) {
 
-        SistemPengingatObat obat1 =
-                new SistemPengingatObat(
-                        "Paracetamol",
-                        "500",
-                        8
-                );
+   System.out.println(" UJI COBA 1: DATA VALID ");
+        
+    PengingatObat obat1 = new PengingatObat("Paracetamol", "500", 8);
+    obat1.tampilkanData();
 
-        obat1.tampilkanData();
+      System.out.println("\n UJI COBA 2: VALIDASI INPUT SALAH ");
+        
+     PengingatObat obat2 = new PengingatObat("", "", 25);
+     obat2.tampilkanData();
+
+    System.out.println("\n UPDATE SETTER & GETTER ");
+        
+        obat2.setNamaObat("Amoxicillin");
+        obat2.setDosis("500");
+        obat2.setJamMinum(14);
+
+        
+        System.out.println("Nama Obat  : " + obat2.getNamaObat());
+     System.out.println("Dosis     : " + obat2.getDosis() + " mg");
+        System.out.println("Jam Minum  : " + obat2.getJamMinum() + ":00 WIB");
     }
 }
