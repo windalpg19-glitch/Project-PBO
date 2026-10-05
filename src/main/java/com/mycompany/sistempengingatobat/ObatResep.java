@@ -1,22 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.sistempengingatobat;
 
-/**
- *
- * @author WINDA
- */
 public class ObatResep extends PengingatObat {
     private String namaDokter;
     private int lamaHari;
 
     public ObatResep(String namaObat, String dosis, int jamMinum,
                      String namaDokter, int lamaHari) {
-        super(namaObat, dosis, jamMinum);   // panggil constructor parent
-        this.namaDokter = namaDokter;
-        this.lamaHari = lamaHari;
+        super(namaObat, dosis, jamMinum);
+        setNamaDokter(namaDokter);
+        setLamaHari(lamaHari);
     }
 
     public String getNamaDokter() {
@@ -24,7 +16,11 @@ public class ObatResep extends PengingatObat {
     }
 
     public void setNamaDokter(String namaDokter) {
-        this.namaDokter = namaDokter;
+        if (namaDokter != null && !namaDokter.trim().isEmpty()) {
+            this.namaDokter = namaDokter;
+        } else {
+            this.namaDokter = "Tidak diketahui";
+        }
     }
 
     public int getLamaHari() {
@@ -41,9 +37,25 @@ public class ObatResep extends PengingatObat {
     }
 
     @Override
+    public String getJenisObat() {
+        return "Obat Resep";
+    }
+
+    @Override
     public void tampilkanData() {
-        super.tampilkanData();              // pakai output parent dulu
-        System.out.println("Dokter    : " + namaDokter);
-        System.out.println("Lama      : " + lamaHari + " hari");
+        super.tampilkanData();
+        System.out.println("Jenis      : " + getJenisObat());
+        System.out.println("Dokter     : " + namaDokter);
+        System.out.println("Lama       : " + lamaHari + " hari");
+    }
+
+    @Override
+    public void lakukanPengingat() {
+        System.out.println("Pengingat: Saatnya minum obat resep " + getNamaObat());
+    }
+
+    public void tampilkanData(String keterangan) {
+        tampilkanData();
+        System.out.println("Keterangan : " + keterangan);
     }
 }

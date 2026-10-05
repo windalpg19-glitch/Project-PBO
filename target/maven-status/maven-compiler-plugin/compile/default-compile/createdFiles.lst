@@ -1,3 +1,6 @@
+com\mycompany\sistempengingatobat\ObatBiasa.class
 com\mycompany\sistempengingatobat\SistemPengingatObat.class
-com\mycompany\sistempengingatobat\ObatResep.class
 com\mycompany\sistempengingatobat\PengingatObat.class
+com\mycompany\sistempengingatobat\ObatHerbal.class
+com\mycompany\sistempengingatobat\ObatResep.class
+com\mycompany\sistempengingatobat\Pengingat.class
