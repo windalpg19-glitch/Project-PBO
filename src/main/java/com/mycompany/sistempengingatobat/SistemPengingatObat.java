@@ -1,85 +1,55 @@
 package com.mycompany.sistempengingatobat;
 
 public class SistemPengingatObat {
-
     public static void main(String[] args) {
+        Pasien pasien = new Pasien("Winda", "OBT001", "Demam");
+        pasien.tampilkanData();
+        pasien.tampilkanKartuObat();
+        pasien.lakukanPengingat();
 
-        System.out.println("DATA OBAT RESEP ");
+        System.out.println();
 
-        ObatResep obat1 = new ObatResep(
-                "Amoxicillin",
-                "500",
-                14,
-                "dr. Budi",
-                5
-        );
+        Dokter dokter = new Dokter("Dr. Andi", "Umum");
+        JadwalMinum jadwalPagi;
+        JadwalMinum jadwalMalam;
 
-        obat1.tampilkanData();
-        obat1.lakukanPengingat();
-        obat1.tampilkanPesan();
+        try {
+            jadwalPagi = new JadwalMinum("Paracetamol", 8);
+            jadwalMalam = new JadwalMinum("Vitamin", 20);
+            dokter.tambahJadwal(jadwalPagi);
+            dokter.tambahJadwal(jadwalMalam);
+            dokter.tampilkanDaftarJadwal();
+            dokter.konsultasi(pasien);
 
-        System.out.println("\nDATA OBAT BIASA ");
+            System.out.println();
+            dokter.aturPengingat("Amoxicillin", 14, "Minum sesuai petunjuk dokter");
+            dokter.aturPengingat("Obat salah", 25);
+        } catch (WaktuMinumTidakValidException e) {
+            System.out.println("Pengingat gagal dibuat: " + e.getMessage());
+        } finally {
+            System.out.println("Proses pengaturan pengingat selesai.");
+        }
 
-        ObatBiasa obat2 = new ObatBiasa(
-                "Paracetamol",
-                "500",
-                8,
-                "Untuk menurunkan demam"
-        );
+        System.out.println();
 
-        obat2.tampilkanData();
-        obat2.lakukanPengingat();
+        PasienBaru pasienBaru = new PasienBaru("Salsa", "OBT002", "Batuk", "Rawat jalan", 3);
+        pasienBaru.tampilkanIdentitas();
+        pasienBaru.tampilkanPerawatan();
 
-        System.out.println("\nDATA OBAT HERBAL ");
+        System.out.println();
 
-        ObatHerbal obat3 = new ObatHerbal(
-                "Tolak Angin",
-                "1 sachet",
-                20,
-                "Jahe"
-        );
+        PasienKhusus pasienKhusus = new PasienKhusus("Rani", "OBT003", "Alergi", "Obat resep", 2);
+        pasienKhusus.tampilkanData();
 
-        obat3.tampilkanData();
-        obat3.lakukanPengingat();
+        System.out.println();
 
-        System.out.println("\n POLYMORPHISM ");
-
-        PengingatObat obat4 = new ObatResep(
-                "Ibuprofen",
-                "400",
-                20,
-                "dr. Sari",
-                3
-        );
-
-        obat4.tampilkanData();
-
-        System.out.println("\n VALIDASI ");
-
-        ObatResep obat5 = new ObatResep(
-                "",
-                "",
-                25,
-                "",
-                -3
-        );
-
-        obat5.tampilkanData();
-
-        System.out.println("\n OVERLOADING ");
-
-        obat1.tampilkanData("Obat harus diminum sesuai resep dokter.");
-
-        System.out.println("\n UPDATE DATA ");
-
-        obat1.setNamaObat("Amoxicillin 500");
-        obat1.setDosis("500");
-        obat1.setJamMinum(16);
-        obat1.setNamaDokter("dr. Andi");
-
-        System.out.println("Nama Obat : " + obat1.getNamaObat());
-        System.out.println("Dosis     : " + obat1.getDosis() + " mg");
-        System.out.println("Jam Minum : " + obat1.getJamMinum() + ":00 WIB");
-        System.out.println("Dokter    : " + obat1.getNamaDokter());
+        Pengguna[] daftarPengguna = {pasien, dokter, pasienBaru, pasienKhusus};
+        for (Pengguna pengguna : daftarPengguna) {
+            pengguna.tampilkanIdentitas();
+            if (pengguna instanceof Pengingat) {
+                ((Pengingat) pengguna).lakukanPengingat();
+            }
+            System.out.println();
+        }
     }
 }
